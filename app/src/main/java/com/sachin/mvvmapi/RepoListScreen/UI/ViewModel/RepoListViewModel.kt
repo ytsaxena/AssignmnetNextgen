@@ -27,10 +27,11 @@ class RepoListViewModel @Inject constructor(var repoListRepository: RepoListRepo
 //            val apiresponse = catListRepository.getCatListAPI(limit)
 //            _catImageListMutableLiveData.postValue(apiresponse)
 
-            withContext(Dispatchers.Main) {
+
                 val apiresponse = repoListRepository.getRepoListAPI(username)
-                _repoListMutableLiveData.value = apiresponse
-            }
+                _repoListMutableLiveData.postValue(apiresponse)
+
+
         }
     }
 

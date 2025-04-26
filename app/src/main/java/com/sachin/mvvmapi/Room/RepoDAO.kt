@@ -11,7 +11,7 @@ import com.sachin.mvvmapi.RepoListScreen.model.RepoResponseModelItem
 interface RepoDAO {
 
         @Query("SELECT * FROM repos")
-        suspend fun getAllRepos(): List<RepoResponseModelItem>
+         fun getAllRepos(): List<RepoResponseModelItem>
 
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         suspend fun insertRepos(repos: List<RepoResponseModelItem>)
