@@ -26,20 +26,20 @@ class SettingsActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(
-                systemBars.left + 20,
-                systemBars.top + 30,
-                systemBars.right,
-                systemBars.bottom
-            )
-            insets
-        }
-
-        binding.signout.setOnClickListener {
-            signOut()
-        }
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            v.setPadding(
+//                systemBars.left + 20,
+//                systemBars.top + 30,
+//                systemBars.right,
+//                systemBars.bottom
+//            )
+//            insets
+//        }
+//
+//        binding.signout.setOnClickListener {
+//            signOut()
+//        }
 
     }
     private fun signOut() {

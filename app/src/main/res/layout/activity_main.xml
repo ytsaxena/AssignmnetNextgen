@@ -1,78 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RepoListScreen.UI.MainActivity">
 
-    <RelativeLayout
+    <!--    <RelativeLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:layout_height="50dp">-->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/searchedt"-->
+    <!--            android:layout_toLeftOf="@id/settingsbtn"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:singleLine="true"-->
+    <!--            android:background="@null"-->
+    <!--            android:maxLength="50"-->
+    <!--            android:layout_marginStart="10dp"-->
+    <!--            android:hint="Search Repository"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:layout_height="match_parent"/>-->
+
+
+    <!--        <ImageView-->
+    <!--            android:layout_width="40dp"-->
+    <!--            android:layout_toLeftOf="@id/settingsbtn"-->
+    <!--            android:id="@+id/searchbtn"-->
+    <!--            android:layout_marginTop="3dp"-->
+    <!--            android:layout_marginEnd="10dp"-->
+    <!--            android:src="@drawable/baseline_search_24"-->
+    <!--            android:layout_height="45dp"/>-->
+
+
+    <!--        <ImageView-->
+    <!--            android:layout_alignParentEnd="true"-->
+    <!--            android:layout_width="40dp"-->
+    <!--            android:id="@+id/settingsbtn"-->
+    <!--            android:layout_marginTop="3dp"-->
+    <!--            android:layout_marginEnd="10dp"-->
+    <!--            android:src="@drawable/baseline_settings_24"-->
+    <!--            android:layout_height="45dp"/>-->
+
+    <!--    </RelativeLayout>-->
+
+    <!--    <FrameLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent">-->
+
+    <!--        <androidx.recyclerview.widget.RecyclerView-->
+    <!--            android:id="@+id/catImageRV"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_margin="8dp" />-->
+
+
+    <!--        <ProgressBar-->
+    <!--            android:id="@+id/progress_circular"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_gravity="center"/>-->
+    <!--    </FrameLayout>-->
+
+
+    <!--    <fragment-->
+    <!--        android:id="@+id/nav_host_fragment_container"-->
+    <!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        app:defaultNavHost="true"-->
+    <!--        app:navGraph="@navigation/bottom_nav" />-->
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_marginStart="10dp"
-        android:layout_height="50dp">
-
-        <EditText
-            android:id="@+id/searchedt"
-            android:layout_toLeftOf="@id/settingsbtn"
-            android:layout_width="match_parent"
-            android:singleLine="true"
-            android:background="@null"
-            android:maxLength="50"
-            android:layout_marginStart="10dp"
-            android:hint="Search Repository"
-            android:textColor="@color/black"
-            android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavView"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/bottom_nav" />
 
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_toLeftOf="@id/settingsbtn"
-            android:id="@+id/searchbtn"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/baseline_search_24"
-            android:layout_height="45dp"/>
-
-
-
-        <ImageView
-            android:layout_alignParentEnd="true"
-            android:layout_width="40dp"
-            android:id="@+id/settingsbtn"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/baseline_settings_24"
-            android:layout_height="45dp"/>
-
-    </RelativeLayout>
-
-    <FrameLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/catImageRV"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp" />
-
-
-
-        <ProgressBar
-            android:id="@+id/progress_circular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
-    </FrameLayout>
+        android:layout_height="wrap_content"
+        android:background="#453535"
+        app:itemIconSize="30dp"
+        android:layout_alignParentBottom="true"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/menu" />
 
 
+</RelativeLayout>
 
-
-
-
-
-
-
-</LinearLayout>

@@ -3,28 +3,21 @@ package com.sachin.mvvmapi.RepoListScreen.UI
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.sachin.mvvm2.CatList.ViewModel.RepoListViewModel
-import com.sachin.mvvm2.Utility.Resource
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.sachin.mvvm2.CatList.ViewModel.HomeViewModel
 import com.sachin.mvvmapi.R
 import com.sachin.mvvmapi.RepoDetailScreen.RepoDetailActivity
-import com.sachin.mvvmapi.RepoListScreen.model.Owner
 import com.sachin.mvvmapi.RepoListScreen.model.RepoResponseModelItem
-import com.sachin.mvvmapi.SettingsScreen.SettingsActivity
 import com.sachin.mvvmapi.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -32,7 +25,7 @@ class MainActivity : AppCompatActivity() ,onClick{
 
     lateinit var binding: ActivityMainBinding
 
-    val repoListViewModel: RepoListViewModel by viewModels()  // ViewModel injection via Hilt
+    val homeViewModel: HomeViewModel by viewModels()  // ViewModel injection via Hilt
 
 
     lateinit var repolist: ArrayList<RepoResponseModelItem>
@@ -40,6 +33,7 @@ class MainActivity : AppCompatActivity() ,onClick{
     lateinit var repolistAdapter: RepolistAdapter
     private var searchJob: Job? = null
 
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,26 +44,39 @@ class MainActivity : AppCompatActivity() ,onClick{
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left +20 , systemBars.top+30, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left +20 , systemBars.top+30, systemBars.right, 0)
             insets
         }
 
-        val user = intent.getStringExtra("USER")
-        val name = intent.getStringExtra("NAME")
-        val email = intent.getStringExtra("EMAIL")
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        navController = navHostFragment.navController
+        binding.bottomNavView.setupWithNavController(navController)
+
+
+
+
+
+//        val user = intent.getStringExtra("USER")
+//        val name = intent.getStringExtra("NAME")
+//        val email = intent.getStringExtra("EMAIL")
+//        val photo = intent.getStringExtra("PROFILE")
+
 
         // Use the retrieved data
-        Log.d("MainActivity", "User: $user, Name: $name, Email: $email")
+  //      Log.d("MainActivity", "User: $user, Name: $name, Email: $email")
+
+
 
 
         //setup RV
 
         repolist = ArrayList(emptyList())
-        binding.catImageRV.layoutManager = LinearLayoutManager(this)
-        repolistAdapter = RepolistAdapter(repolist, this)
-        binding.catImageRV.adapter = repolistAdapter
+//        binding.catImageRV.layoutManager = LinearLayoutManager(this)
+//        repolistAdapter = RepolistAdapter(repolist, this)
+//        binding.catImageRV.adapter = repolistAdapter
 
 
+/*
         repoListViewModel.repoListLiveData.observe(this, Observer { result ->
             when (result) {
                 is Resource.Loading -> {
@@ -98,35 +105,36 @@ class MainActivity : AppCompatActivity() ,onClick{
                 }
             }
         })
+*/
 
         // API
-        repoListViewModel.getRepoListAPIData("ytsaxena")
-
-        binding.settingsbtn.setOnClickListener {
-
-            val intent = Intent(this@MainActivity,SettingsActivity::class.java)
-            startActivity(intent)
-
-
-        }
-
-
-        binding.searchbtn.setOnClickListener {
-
-            val query = binding.searchedt.text.toString()
-            repoListViewModel.getRepoListAPIData(query)
-
-            searchJob?.cancel()
-
-            searchJob = lifecycleScope.launch {
-                delay(500) // Debounce delay, adjust as needed
-                if (query.isNotBlank()) {
-                    repoListViewModel.getRepoListAPIData(query)
-                }
-            }
-
-            binding.progressCircular.visibility =View.VISIBLE
-        }
+     //   homeViewModel.getRepoListAPIData("ytsaxena")
+//
+//        binding.settingsbtn.setOnClickListener {
+//
+//            val intent = Intent(this@MainActivity,SettingsActivity::class.java)
+//            startActivity(intent)
+//
+//
+//        }
+//
+//
+//        binding.searchbtn.setOnClickListener {
+//
+//            val query = binding.searchedt.text.toString()
+//            repoListViewModel.getRepoListAPIData(query)
+//
+//            searchJob?.cancel()
+//
+//            searchJob = lifecycleScope.launch {
+//                delay(500) // Debounce delay, adjust as needed
+//                if (query.isNotBlank()) {
+//                    repoListViewModel.getRepoListAPIData(query)
+//                }
+//            }
+//
+//            binding.progressCircular.visibility =View.VISIBLE
+//        }
 
     }
 

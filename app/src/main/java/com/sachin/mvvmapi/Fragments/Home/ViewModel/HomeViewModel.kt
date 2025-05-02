@@ -4,8 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.common.cache.AbstractCache.StatsCounter
 import com.sachin.mvvm2.CatList.Repository.HomeRepository
 import com.sachin.mvvm2.Utility.Resource
+import com.sachin.mvvmapi.Fragments.Home.model.Article
+import com.sachin.mvvmapi.Fragments.Home.model.NewsResponseModel
 import com.sachin.mvvmapi.RepoListScreen.model.RepoResponseModelItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,13 +17,12 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class RepoListViewModel @Inject constructor(var repoListRepository: HomeRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(var homeRepository: HomeRepository) : ViewModel() {
 
-    private var _repoListMutableLiveData = MutableLiveData<Resource<List<RepoResponseModelItem>>>()
-    var repoListLiveData = _repoListMutableLiveData as LiveData<Resource<List<RepoResponseModelItem>>>
+    private var _newsListMutableLiveData = MutableLiveData<Resource<NewsResponseModel>>()
+    var newsListLiveData = _newsListMutableLiveData as LiveData<Resource<NewsResponseModel>>
 
-/*
-    fun getRepoListAPIData(username: String) {
+    fun getNewsListAPIData(country: String) {
 
         viewModelScope.launch(Dispatchers.IO) {
 
@@ -28,13 +30,12 @@ class RepoListViewModel @Inject constructor(var repoListRepository: HomeReposito
 //            _catImageListMutableLiveData.postValue(apiresponse)
 
 
-                val apiresponse = repoListRepository.getRepoListAPI(username)
-                _repoListMutableLiveData.postValue(apiresponse)
+                val apiresponse = homeRepository.getNewsAPI(country)
+                _newsListMutableLiveData.postValue(apiresponse)
 
 
         }
     }
-*/
 
 
 

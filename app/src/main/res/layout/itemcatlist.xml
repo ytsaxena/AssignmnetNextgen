@@ -1,64 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/parent"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
 
-        <TextView
-            android:maxLines="1"
-            android:id="@+id/card_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            />
+            <ImageView
+                android:id="@+id/cardImage"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintHeight_percent="0.45"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/newsTextHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/cardImage" />
+
+            <TextView
+                android:id="@+id/newsTextDesc"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/newsTextHeading" />
+
+            <TextView
+                android:id="@+id/newsSource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/source_background"
+                android:padding="6dp"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/cardImage"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 
-        <ImageView
-            android:id="@+id/card_image"
-            android:layout_toLeftOf="@id/star_txt"
-            android:src="@drawable/baseline_star_24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+<!--    <ImageView-->
+<!--        android:id="@+id/card_image"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
 
-        <TextView
-            android:maxLines="3"
-            android:id="@+id/star_txt"
-            android:layout_alignParentEnd="true"
-          android:layout_marginTop="2dp"
-            android:text="100"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+<!--    <TextView-->
+<!--        android:id="@+id/newstextheading"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="25sp" />-->
 
 
+<!--    <TextView-->
+<!--        android:id="@+id/newstextdesc"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="20sp" />-->
 
-        <TextView
-            android:layout_marginTop="5dp"
-            android:id="@+id/card_text_desc"
-            android:layout_below="@id/card_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            />
+    <!--    <RelativeLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:padding="8dp">-->
 
-    </RelativeLayout>
+    <!--        <TextView-->
+    <!--            android:maxLines="1"-->
+    <!--            android:id="@+id/card_text"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:singleLine="true"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:textSize="20sp"-->
 
-</androidx.cardview.widget.CardView>
+    <!--            />-->
+
+
+    <!--        <ImageView-->
+    <!--            android:id="@+id/card_image"-->
+    <!--            android:layout_toLeftOf="@id/star_txt"-->
+    <!--            android:src="@drawable/baseline_star_24"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content" />-->
+
+    <!--        <TextView-->
+    <!--            android:maxLines="3"-->
+    <!--            android:id="@+id/star_txt"-->
+    <!--            android:layout_alignParentEnd="true"-->
+    <!--          android:layout_marginTop="2dp"-->
+    <!--            android:text="100"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:singleLine="true"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:textSize="14sp"-->
+    <!--            android:textStyle="bold" />-->
+
+
+    <!--        <TextView-->
+    <!--            android:layout_marginTop="5dp"-->
+    <!--            android:id="@+id/card_text_desc"-->
+    <!--            android:layout_below="@id/card_text"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:textSize="16sp"-->
+    <!--            />-->
+
+    <!--    </RelativeLayout>-->
+
+</LinearLayout>

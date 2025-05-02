@@ -4,6 +4,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
     id("com.google.gms.google-services")
+    id("androidx.navigation.safeargs.kotlin")
 
 
 }
@@ -52,6 +53,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.paging.common.android)
+    implementation(libs.androidx.swiperefreshlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -79,8 +82,14 @@ dependencies {
     kapt("androidx.room:room-compiler:2.7.1")
     implementation("androidx.room:room-ktx:2.7.1")
 
+    // nav Integration
+//    implementation ("androidx.navigation:navigation-fragment-ktx:2.8.6")
+//    implementation("androidx.navigation:navigation-ui-ktx:2.8.6")
 
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 }
+
 
 // Allow references to generated code
 kapt {

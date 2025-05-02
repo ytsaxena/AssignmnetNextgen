@@ -32,9 +32,9 @@ class RepolistAdapter(var repolist: ArrayList<RepoResponseModelItem> , var cardc
         val data = repolist[position]
 
 
-        holder.binding.cardText.text = data.name.toString()?: ""
-        holder.binding.cardTextDesc.text = data?.description?.toString()
-        holder.binding.starTxt.text = data.stargazers_count.toString()?: ""
+//        holder.binding.cardText.text = data.name.toString()?: ""
+//        holder.binding.cardTextDesc.text = data?.description?.toString()
+//        holder.binding.starTxt.text = data.stargazers_count.toString()?: ""
 
 
 

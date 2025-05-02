@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.sachin.mvvmapi.RepoListScreen.UI.MainActivity
 import com.sachin.mvvmapi.R
+import com.sachin.mvvmapi.Utility.SessionManager
 import com.sachin.mvvmapi.databinding.ActivityLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,12 +56,11 @@ class LoginActivity : AppCompatActivity() {
             intent.putExtra("USER", user?.uid.toString())
             intent.putExtra("NAME", user?.displayName.toString())
             intent.putExtra("EMAIL", user?.email.toString())
+            intent.putExtra("PROFILE", user?.photoUrl)
             startActivity(intent)
             finish()
             return
         }
-
-
 
 
 
@@ -106,11 +106,24 @@ class LoginActivity : AppCompatActivity() {
                  //   val user = FirebaseAuth.getInstance().currentUser
                     val name = user?.displayName
                     val email = user?.email
-                    val photoUrl = user?.photoUrl
+                        //  val photoUrl = user?.photoUrl
+
+                    val photoUrl = user?.photoUrl?.toString() // Convert Uri to String
+
+                    val sessionManager = SessionManager(this)
+                    sessionManager.saveUserData(
+                        user?.uid.toString(),
+                        name,
+                        email,
+                        photoUrl
+                    )
+
+
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    intent.putExtra("USER",user?.uid.toString())
-                    intent.putExtra("NAME",name.toString())
-                    intent.putExtra("EMAIL",email.toString())
+//                    intent.putExtra("USER",user?.uid.toString())
+//                    intent.putExtra("NAME",name.toString())
+//                    intent.putExtra("EMAIL",email.toString())
+//                    intent.putExtra("PROFILE", photoUrl)
                     startActivity(intent)
                     finish()
 
