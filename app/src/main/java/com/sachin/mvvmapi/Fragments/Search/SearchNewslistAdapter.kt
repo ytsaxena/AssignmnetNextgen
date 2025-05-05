@@ -2,6 +2,7 @@ package com.sachin.mvvmapi.Fragments.Search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sachin.mvvmapi.Fragments.Home.model.Article
@@ -35,13 +36,13 @@ class SearchNewslistAdapter(var repolist: ArrayList<Article>) : RecyclerView.Ada
             val data = repolist[position]
 
 
-            holder.binding.newstextheading.text = data.title.toString()
+                holder.binding.newstextheading.text = data.title.toString()
 //            holder.binding.newsTextDesc.text = data?.description?.toString()
 //            holder.binding.newsSource.text = data?.source?.name.toString()
 
 
 
-            Glide.with(holder.binding.image).load(data.urlToImage).into(holder.binding.image)
+                Glide.with(holder.binding.image).load(data.urlToImage).into(holder.binding.image)
 
                 //   holder.binding.parent.setOnClickListener{
 
@@ -56,7 +57,9 @@ class SearchNewslistAdapter(var repolist: ArrayList<Article>) : RecyclerView.Ada
 
 
 
-     //       }
+                //       }
+
+
 
         }
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,7 +45,19 @@ class SearchFragment : Fragment() {
         binding.newsRV.layoutManager = LinearLayoutManager(activity)
         binding.newsRV.adapter = newslistAdapter
 
-        homeViewModel.getNewsListAPIData("us")
+
+        homeViewModel.getNewsListAPIData("us","")
+
+        binding.searchedt.text.clear()
+
+        binding.searchbtn.setOnClickListener {
+
+            val edtquery = binding.searchedt.text.toString()
+            homeViewModel.getNewsListAPIData("us",edtquery)
+            binding.progressCircular.visibility =View.VISIBLE
+
+        }
+
 
         homeViewModel.newsListLiveData.observe(viewLifecycleOwner) { result ->
             when (result) {
@@ -64,6 +77,11 @@ class SearchFragment : Fragment() {
 
                     newslist.clear()
                     newslist.addAll(result.data.articles)
+if (newslist.isEmpty())
+{
+    Toast.makeText(activity, "No result found.", Toast.LENGTH_SHORT).show()
+
+}
                     newslistAdapter.notifyDataSetChanged()
 
                 }

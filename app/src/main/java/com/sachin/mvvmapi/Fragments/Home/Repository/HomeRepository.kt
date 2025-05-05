@@ -15,21 +15,19 @@ class HomeRepository @Inject constructor(
     val apiInterface: APIinterfaceService, val repoDao: RepoDAO, val networkHelper: NetworkHelper
 ) {
 
-    suspend fun getNewsAPI(username: String): Resource<NewsResponseModel> {
+    suspend fun getNewsAPI(country: String,query :String): Resource<NewsResponseModel> {
         return try {
-            val response = apiInterface.getNews("us")
+            val response = apiInterface.getNews(country ,query)
             if (response.isSuccessful) {
                 // Return success
                 val data = response.body()
-                // Handle null case properly
                 if (data != null) {
-                    // Removed unnecessary withContext since we're already handling this properly
                     Resource.Success(data)
                 } else {
                     Resource.Error("Empty response body")
                 }
             } else {
-                // Return error with more specific information
+                // Return error
                 Resource.Error("API call failed with code: ${response.code()}")
             }
         } catch (e: Exception) {

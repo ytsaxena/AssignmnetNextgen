@@ -53,9 +53,7 @@ class HomeFragment : Fragment() {
             orientation = ViewPager2.ORIENTATION_VERTICAL
 
 
-
-
-            homeViewModel.getNewsListAPIData("us")
+            homeViewModel.getNewsListAPIData("us","")
 
             homeViewModel.newsListLiveData.observe(viewLifecycleOwner) { result ->
                 when (result) {
@@ -84,7 +82,7 @@ class HomeFragment : Fragment() {
             }
 
             swipeRefreshLayout.setOnRefreshListener {
-                homeViewModel.getNewsListAPIData("us")
+                homeViewModel.getNewsListAPIData("us","")
             }
 
         }

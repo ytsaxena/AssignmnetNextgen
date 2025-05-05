@@ -13,9 +13,12 @@ interface APIinterfaceService {
     @GET("v2/top-headlines")
     suspend fun getNews(
         @retrofit2.http.Query("country") country: String,
+        @retrofit2.http.Query("q") query: String,
            @retrofit2.http.Query("apiKey") apiKey: String ="d08a912c270a4ab0af3b6dae3512985c"
 
     ): Response<NewsResponseModel>
+
+  //  https://newsapi.org/v2/top-headlines?q=cnn&apiKey=d08a912c270a4ab0af3b6dae3512985c
 
     // https://api.github.com/users/ytsaxena/repos
     // d08a912c270a4ab0af3b6dae3512985c

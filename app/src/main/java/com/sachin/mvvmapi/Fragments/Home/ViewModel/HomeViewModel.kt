@@ -22,7 +22,7 @@ class HomeViewModel @Inject constructor(var homeRepository: HomeRepository) : Vi
     private var _newsListMutableLiveData = MutableLiveData<Resource<NewsResponseModel>>()
     var newsListLiveData = _newsListMutableLiveData as LiveData<Resource<NewsResponseModel>>
 
-    fun getNewsListAPIData(country: String) {
+    fun getNewsListAPIData(country: String,query :String) {
 
         viewModelScope.launch(Dispatchers.IO) {
 
@@ -30,7 +30,7 @@ class HomeViewModel @Inject constructor(var homeRepository: HomeRepository) : Vi
 //            _catImageListMutableLiveData.postValue(apiresponse)
 
 
-                val apiresponse = homeRepository.getNewsAPI(country)
+                val apiresponse = homeRepository.getNewsAPI(country,query)
                 _newsListMutableLiveData.postValue(apiresponse)
 
 
